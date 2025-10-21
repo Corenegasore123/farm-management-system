@@ -1,49 +1,72 @@
 {% extends 'attendance/base.html' %}
-{% block title %} Add Farmer — FarmEase {% endblock %}
+{% block title %}Add Farmer — FarmEase{% endblock %}
+{% block page_title %}Add Farmer{% endblock %}
 {% block content %}
-
-<div class="d-flex align-items-center justify-content-between mb-3">
-  <div>
-    <h2 class="mb-0">Add Farmer</h2>
-    <p class="text-muted small">Register a new farmer to track attendance.</p>
-  </div>
-  <div>
-    <a href="/attendance/" class="btn btn-outline">Back to Attendance</a>
-  </div>
-</div>
-
-{# Flash messages #} {% if messages %}
-<div class="mb-3">
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }} mb-2" role="alert">
-    {{ message }}
-  </div>
-  {% endfor %}
-</div>
-{% endif %}
-
-<form method="POST" novalidate class="row g-3">
-  {% csrf_token %} {{ form.non_field_errors }}
-
-  <div class="col-md-6">
-    {{ form.name.label_tag }} {{ form.name }} {{ form.name.errors }}
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+      <h2 class="mb-0">Add Farmer</h2>
+      <p class="text-muted small">Register a new farmer to track attendance.</p>
+    </div>
+    <div>
+      <a href="/attendance/" class="btn btn-outline">Back to Attendance</a>
+    </div>
   </div>
 
-  <div class="col-md-6">
-    {{ form.farm.label_tag }} {{ form.farm }} {{ form.farm.errors }}
+  {# Flash messages #} {% if messages %}
+  <div class="mb-3">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mb-2" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
   </div>
+  {% endif %}
 
-  <div class="col-md-6">
-    {{ form.age.label_tag }} {{ form.age }} {{ form.age.errors }}
-  </div>
+  <form method="POST" novalidate class="row g-3">
+    {% csrf_token %} {{ form.non_field_errors }}
 
-  <div class="col-md-6">
-    {{ form.location.label_tag }} {{ form.location }} {{ form.location.errors }}
-  </div>
+    <div class="col-md-6">
+      {{ form.name.label_tag }} {{ form.name }} {{ form.name.errors }}
+    </div>
 
-  <div class="col-12 mt-2">
-    <button type="submit" class="btn btn-primary">Save Farmer</button>
-  </div>
-</form>
+    <div class="col-md-6">
+      {{ form.farm.label_tag }} {{ form.farm }} {{ form.farm.errors }}
+    </div>
 
-{% endblock %}
+    <div class="col-md-6">
+      {{ form.age.label_tag }} {{ form.age }} {{ form.age.errors }}
+    </div>
+
+    <div class="col-md-6">
+      {{ form.location.label_tag }} {{ form.location }} {{ form.location.errors }}
+    </div>
+
+    <div class="col-md-6">
+      {{ form.phone.label_tag }} {{ form.phone }} {{ form.phone.errors }}
+    </div>
+
+    <div class="col-md-6">
+      {{ form.employment_type.label_tag }}
+      {{ form.employment_type }}
+      {{ form.employment_type.errors }}
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Gender</label>
+      <div class="d-flex gap-4 align-items-center flex-wrap">
+        {% for radio in form.gender %}
+          <label class="d-inline-flex align-items-center gap-2">
+            {{ radio.tag }}
+            <span>{{ radio.choice_label }}</span>
+          </label>
+        {% endfor %}
+      </div>
+      {{ form.gender.errors }}
+    </div>
+
+    <div class="col-12 mt-2">
+      <button type="submit" class="btn btn-primary">Save Farmer</button>
+    </div>
+  </form>
+
+{% endblock content %}
