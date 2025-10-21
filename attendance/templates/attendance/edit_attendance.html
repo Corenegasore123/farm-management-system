@@ -1,0 +1,65 @@
+{% extends 'attendance/base.html' %}
+{% block title %} Edit Attendance — FarmEase {% endblock %}
+{% block page_title %}Edit Attendance{% endblock %}
+{% block content %}
+
+<div class="mb-6">
+  <h2 class="text-2xl font-bold text-gray-800 mb-1">Edit Attendance Record</h2>
+  <p class="text-gray-500 text-sm">Update attendance status for this student</p>
+</div>
+
+<div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm max-w-2xl">
+  <div class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="w-12 h-12 rounded-full bg-blue-400 flex items-center justify-center text-white font-semibold text-lg">
+        {{ attendance.student.name|first|upper }}
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-800 text-lg">{{ attendance.student.name }}</h3>
+        <p class="text-sm text-gray-600">Class: {{ attendance.student.class_name }} | School: {{ attendance.student.school }}</p>
+      </div>
+    </div>
+    <div class="text-sm text-gray-700">
+      <i class="bi bi-calendar"></i> <strong>Date:</strong> {{ attendance.date|date:"F d, Y" }}
+    </div>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="space-y-4">
+      <div class="flex items-center gap-4 p-4 border border-gray-200 rounded-lg">
+        <label class="flex items-center gap-3 cursor-pointer flex-1">
+          <input type="checkbox" name="is_present" {% if attendance.is_present %}checked{% endif %} class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer" />
+          <div>
+            <span class="font-semibold text-gray-800 block">Mark as Present</span>
+            <span class="text-sm text-gray-500">Check this box if the student was present</span>
+          </div>
+        </label>
+        <div>
+          {% if attendance.is_present %}
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+              <i class="bi bi-check-circle-fill mr-1"></i>Currently: Present
+            </span>
+          {% else %}
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">
+              <i class="bi bi-x-circle-fill mr-1"></i>Currently: Absent
+            </span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-200">
+      <a href="{% url 'attendance_list' %}" class="btn btn-outline inline-flex items-center gap-2">
+        <i class="bi bi-x-circle"></i>
+        <span>Cancel</span>
+      </a>
+      <button type="submit" class="btn btn-primary inline-flex items-center gap-2">
+        <i class="bi bi-check-circle"></i>
+        <span>Update Attendance</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

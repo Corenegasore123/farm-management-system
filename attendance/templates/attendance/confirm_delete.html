@@ -1,0 +1,50 @@
+{% extends 'attendance/base.html' %}
+{% block title %} Confirm Delete — FarmEase {% endblock %}
+{% block page_title %}Confirm Delete{% endblock %}
+{% block content %}
+
+<div class="max-w-md mx-auto">
+  <div class="bg-white rounded-lg border border-red-200 p-6 shadow-lg">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+        <i class="bi bi-exclamation-triangle text-red-600 text-xl"></i>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-800">Confirm Deletion</h2>
+        <p class="text-sm text-gray-500">This action cannot be undone</p>
+      </div>
+    </div>
+
+    <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+      <p class="text-gray-700">
+        Are you sure you want to delete 
+        <span class="font-semibold text-gray-900">{{ type }} "{{ object.name }}"</span>?
+      </p>
+      {% if type == 'farmer' %}
+        <p class="text-sm text-gray-600 mt-2">
+          <i class="bi bi-info-circle"></i> All attendance records for this farmer will also be deleted.
+        </p>
+      {% elif type == 'student' %}
+        <p class="text-sm text-gray-600 mt-2">
+          <i class="bi bi-info-circle"></i> All attendance records for this student will also be deleted.
+        </p>
+      {% endif %}
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="flex justify-end gap-3">
+        <a href="{% if type == 'farmer' %}{% url 'farmers_list' %}{% else %}{% url 'students_list' %}{% endif %}" class="btn btn-outline inline-flex items-center gap-2">
+          <i class="bi bi-x-circle"></i>
+          <span>Cancel</span>
+        </a>
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold inline-flex items-center gap-2 transition-colors">
+          <i class="bi bi-trash"></i>
+          <span>Delete {{ type|title }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
