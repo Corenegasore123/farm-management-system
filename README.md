@@ -126,14 +126,6 @@ farm-management-system/
 └─ manage.py
 ```
 
-## Screenshots
-
-- Attendance dashboard
-- Farmers list / Add farmer
-- Students list / Add student
-
-Add screenshots to showcase the UI once you have them available.
-
 ## Roadmap
 
 - Student attendance tracking (parallel to farmer attendance)
