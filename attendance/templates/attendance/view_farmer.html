@@ -1,0 +1,99 @@
+{% extends 'attendance/base.html' %}
+{% block title %}View Farmer — FarmEase{% endblock %}
+{% block page_title %}Farmer Details{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <div>
+    <h2 class="mb-0">Farmer Details</h2>
+    <p class="text-muted small">View farmer information</p>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="{% url 'edit_farmer' farmer.pk %}" class="btn btn-primary inline-flex items-center gap-2">
+      <i class="bi bi-pencil"></i>
+      <span>Edit</span>
+    </a>
+    <a href="{% url 'farmers_list' %}" class="btn btn-outline">Back to Farmers</a>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+  <div class="p-6">
+    <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
+      <div class="w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold">
+        {{ farmer.name|first|upper }}
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold text-gray-800 mb-1">{{ farmer.name }}</h3>
+        <p class="text-gray-500">{{ farmer.farm }}</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-building"></i> Farm
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ farmer.farm }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-calendar"></i> Age
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ farmer.age }} years</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-geo-alt"></i> Location
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ farmer.location }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-telephone"></i> Phone
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ farmer.phone|default:"Not provided" }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-person"></i> Gender
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ farmer.get_gender_display|default:"Not specified" }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-briefcase"></i> Employment Type
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ farmer.get_employment_type_display|default:"Not specified" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+    <div class="flex justify-end gap-2">
+      <a href="{% url 'delete_farmer' farmer.pk %}" class="btn btn-outline text-red-600 hover:bg-red-50 inline-flex items-center gap-2">
+        <i class="bi bi-trash"></i>
+        <span>Delete Farmer</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
