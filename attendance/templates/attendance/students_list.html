@@ -1,0 +1,42 @@
+{% extends 'attendance/base.html' %}
+{% block title %} Students — FarmEase {% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h2 class="mb-0">Students</h2>
+    <p class="text-muted small">All registered students</p>
+  </div>
+  <div>
+    <a href="/attendance/students/add/" class="btn btn-primary">Add Student</a>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Age</th>
+        <th>School</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.class_name }}</td>
+        <td>{{ s.age }}</td>
+        <td>{{ s.school }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" class="text-center text-muted">No students yet</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

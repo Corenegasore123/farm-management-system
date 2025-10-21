@@ -1,0 +1,59 @@
+{% extends 'attendance/base.html' %}
+{% block title %} Add Student — FarmEase {% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <div>
+    <h2 class="mb-0">Add Student</h2>
+    <p class="text-muted small">Register a new student.</p>
+  </div>
+  <div>
+    <a href="/attendance/students/" class="btn btn-outline">Back to Students</a>
+  </div>
+</div>
+
+{# Flash messages #}
+{% if messages %}
+<div class="mb-3">
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} mb-2" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<form method="POST" novalidate class="row g-3">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  <div class="col-md-6">
+    {{ form.name.label_tag }}
+    {{ form.name }}
+    {{ form.name.errors }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.class_name.label_tag }}
+    {{ form.class_name }}
+    {{ form.class_name.errors }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.age.label_tag }}
+    {{ form.age }}
+    {{ form.age.errors }}
+  </div>
+
+  <div class="col-md-6">
+    {{ form.school.label_tag }}
+    {{ form.school }}
+    {{ form.school.errors }}
+  </div>
+
+  <div class="col-12 mt-2">
+    <button type="submit" class="btn btn-primary">Save Student</button>
+  </div>
+</form>
+
+{% endblock %}
