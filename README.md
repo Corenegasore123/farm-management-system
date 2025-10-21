@@ -5,7 +5,6 @@
 [![Django](https://img.shields.io/badge/Django-4.2-092E20?logo=django&logoColor=white)](https://www.djangoproject.com/)
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![License](https://img.shields.io/badge/License-MIT-informational)](#license)
 
 Manage farmers, track attendance, and register students with a clean, Bootstrap-powered UI.
 
@@ -25,7 +24,6 @@ Manage farmers, track attendance, and register students with a clean, Bootstrap-
 - [Screenshots](#screenshots)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
