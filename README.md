@@ -137,5 +137,6 @@ farm-management-system/
 
 - Fork the repo and create a feature branch.
 - Add tests where appropriate.
-- Open a pull request with a clear summary of changes.
+- Open a pull request with a clear summary of changes.  
+- You can also star the repo if you find it useful :)
 
