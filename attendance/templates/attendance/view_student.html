@@ -1,0 +1,81 @@
+{% extends 'attendance/base.html' %}
+{% block title %}View Student — FarmEase{% endblock %}
+{% block page_title %}Student Details{% endblock %}
+{% block content %}
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <div>
+    <h2 class="mb-0">Student Details</h2>
+    <p class="text-muted small">View student information</p>
+  </div>
+  <div class="d-flex gap-2">
+    <a href="{% url 'edit_student' student.pk %}" class="btn btn-primary inline-flex items-center gap-2">
+      <i class="bi bi-pencil"></i>
+      <span>Edit</span>
+    </a>
+    <a href="{% url 'students_list' %}" class="btn btn-outline">Back to Students</a>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+  <div class="p-6">
+    <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
+      <div class="w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center text-white text-3xl font-bold">
+        {{ student.name|first|upper }}
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold text-gray-800 mb-1">{{ student.name }}</h3>
+        <p class="text-gray-500">{{ student.school }}</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-bookmark"></i> Class
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ student.class_name }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-calendar"></i> Age
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ student.age }} years</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-building"></i> School
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ student.school }}</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <label class="text-sm font-semibold text-gray-500 mb-1 d-block">
+            <i class="bi bi-person"></i> Gender
+          </label>
+          <p class="text-lg font-medium text-gray-800 mb-0">{{ student.get_gender_display|default:"Not specified" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
+    <div class="flex justify-end gap-2">
+      <a href="{% url 'delete_student' student.pk %}" class="btn btn-outline text-red-600 hover:bg-red-50 inline-flex items-center gap-2">
+        <i class="bi bi-trash"></i>
+        <span>Delete Student</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
