@@ -147,6 +147,3 @@ Add screenshots to showcase the UI once you have them available.
 - Add tests where appropriate.
 - Open a pull request with a clear summary of changes.
 
-## License
-
-This project is licensed under the MIT License.
