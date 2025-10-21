@@ -37,6 +37,22 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
+.nav-links a:hover {
+  color: var(--brand);
+}
+.nav-links a.active {
+  color: var(--accent);
+  position: relative;
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
 
 .fms-main {
   padding-top: 32px;
@@ -53,15 +69,34 @@ body {
   padding: 28px;
 }
 
+.fms-footer {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 /* Form styles */
 .form-control {
   border-radius: 10px;
   border: 1px solid #e6edf3;
   padding: 12px 14px;
 }
+.form-control:focus {
+  border-color: #c3e7ff;
+  box-shadow: 0 0 0 4px rgba(31, 162, 255, 0.12);
+}
 label {
   font-weight: 600;
   color: var(--muted);
+}
+.errorlist {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  color: #b42318;
+  font-size: 0.9rem;
+}
+.alert {
+  border-radius: 10px;
 }
 .btn-primary {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -69,6 +104,10 @@ label {
   padding: 10px 18px;
   border-radius: 10px;
   font-weight: 700;
+  transition: transform 0.05s ease;
+}
+.btn-primary:active {
+  transform: translateY(1px);
 }
 .btn-outline {
   background: transparent;
@@ -95,6 +134,9 @@ h2 {
 .table tbody tr {
   border-bottom: 1px solid #f6f8fa;
 }
+.table tbody tr:hover {
+  background: #fafcff;
+}
 .table td,
 .table th {
   vertical-align: middle;
@@ -109,6 +151,12 @@ h2 {
   border-radius: 999px;
   color: var(--accent-2);
   font-weight: 700;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 0;
 }
 
 /* Responsive tweaks */
