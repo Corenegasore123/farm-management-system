@@ -83,7 +83,7 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 # Database
 DB_ENGINE=django.db.backends.postgresql
 DB_NAME=fms2
-DB_USER=postgres
+DB_USER=your-db-username
 DB_PASSWORD=your-db-password
 DB_HOST=localhost
 DB_PORT=5432
